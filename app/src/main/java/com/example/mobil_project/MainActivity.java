@@ -21,9 +21,9 @@ import DataBase.İlceRepository;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String connectionString="jdbc:postgresql://10.0.2.2:5432/Mobile_Project";
+    static final String connectionString="jdbc:postgresql://containers-us-west-143.railway.app:7315/railway";
     static final String user ="postgres";
-    static final String password="1234";
+    static final String password="cxwwuFBGZ25P4LDb6uGO";
     ActivityMainBinding binding;
 
     List<ilceler> selectedCityIlceler = new ArrayList<>();
