@@ -47,5 +47,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_il"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Ara"
+        app:layout_constraintTop_toBottomOf="@id/spinner_ilce"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:onClick="Search"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

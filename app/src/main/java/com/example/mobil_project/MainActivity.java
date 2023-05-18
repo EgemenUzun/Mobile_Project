@@ -2,12 +2,17 @@ package com.example.mobil_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.mobil_project.databinding.ActivityMainBinding;
 
@@ -21,9 +26,10 @@ import DataBase.İlceRepository;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String connectionString="jdbc:postgresql://containers-us-west-143.railway.app:7315/railway";
-    static final String user ="postgres";
-    static final String password="cxwwuFBGZ25P4LDb6uGO";
+    public static final String connectionString="jdbc:postgresql://containers-us-west-143.railway.app:7315/railway";
+    public static final String user ="postgres";
+    public static final String password="cxwwuFBGZ25P4LDb6uGO";
+    Integer il=0,ilce=0;
     ActivityMainBinding binding;
 
     List<ilceler> selectedCityIlceler = new ArrayList<>();
@@ -35,8 +41,19 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         new Task().execute();
-
     }
+
+    public void Search(View view) {
+        if(il!=0 && ilce!=0) {
+            Intent intent = new Intent(this, CardActivity.class);
+            intent.putExtra("ilId", il);
+            intent.putExtra("ilceId", ilce);
+            startActivity(intent);
+        }
+        else
+            Toast.makeText(this, "İl Veya İlçe Seçilmedi", Toast.LENGTH_SHORT).show();
+    }
+
     class Task extends AsyncTask<Void,Void,List<iller>> {
         String error="";
         @Override
@@ -50,34 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
-        class IlceTask extends AsyncTask<Integer, Void, List<ilceler>> {
-            String error = "";
-
-            @Override
-            protected List<ilceler> doInBackground(Integer... params) {
-                int selectedCityId = params[0];
-                try {
-                    İlceRepository ilce = new İlceRepository(connectionString, user, password);
-                    return ilce.getIlceList(selectedCityId);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    error = e.getMessage();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(List<ilceler> ilceList) {
-                if (ilceList != null) {
-                    ArrayAdapter<ilceler> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, ilceList);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spinnerIlce.setAdapter(adapter);
-                } else {
-                    Log.e("IlceTask", error);
-                }
-            }
-        }
-
         @Override
         protected void onPostExecute(List<iller> cityList) {
             if (cityList != null) {
@@ -100,5 +89,46 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Task", error);
             }
         }
+        class IlceTask extends AsyncTask<Integer, Void, List<ilceler>> {
+            String error = "";
+
+            @Override
+            protected List<ilceler> doInBackground(Integer... params) {
+                il = params[0];
+                try {
+                    İlceRepository ilce = new İlceRepository(connectionString, user, password);
+                    return ilce.getIlceList(il);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    error = e.getMessage();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(List<ilceler> ilceList) {
+                if (ilceList != null) {
+                    ArrayAdapter<ilceler> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, ilceList);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.spinnerIlce.setAdapter(adapter);
+                    binding.spinnerIlce.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            ilceler selectedCounty = (ilceler) adapterView.getItemAtPosition(i);
+                            ilce = selectedCounty.id;
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+                } else {
+                    Log.e("IlceTask", error);
+                }
+            }
+        }
+
+
     }
 }
