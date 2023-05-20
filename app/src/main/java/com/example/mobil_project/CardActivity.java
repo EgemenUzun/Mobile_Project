@@ -64,9 +64,13 @@ public class CardActivity extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            int alanid = card.alanid;
-                            // Alan ID'ye göre yapılacak işlemler
-                            Toast.makeText(CardActivity.this, "Alan ID: " + alanid, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CardActivity.this, AlanActivity.class);
+                            intent.putExtra("alanid", card.alanid);
+                            intent.putExtra("ilId", il);
+                            intent.putExtra("ilceId", ilce);
+                            intent.putExtra("title", card.title);
+                            startActivity(intent);
+                            finish();
                         }
                     });
 
@@ -81,5 +85,11 @@ public class CardActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+    public void GoBack(View view)
+    {
+        Intent intent = new Intent(CardActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("ilId", il);
             intent.putExtra("ilceId", ilce);
             startActivity(intent);
+            finish();
         }
         else
             Toast.makeText(this, "İl Veya İlçe Seçilmedi", Toast.LENGTH_SHORT).show();

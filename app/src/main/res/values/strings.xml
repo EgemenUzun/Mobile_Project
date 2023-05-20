@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Mobil_Project</string>
+    <string name="go_back">Go Back Button</string>
     <string name="prompt_il">İl seçiniz</string>
     <string name="prompt_ilce">İlçe seçiniz</string>
-    <string-array name="iller">
-        <item>Bir il Seçin</item>
-    </string-array>
+    <string name="title_activity_alan">AlanActivity</string>
 </resources>
