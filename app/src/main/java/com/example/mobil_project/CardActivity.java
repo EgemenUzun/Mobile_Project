@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.mobil_project.databinding.ActivityMainBinding;
@@ -24,11 +25,13 @@ import DataBase.CardRepository;
 public class CardActivity extends AppCompatActivity {
     int il, ilce;
     ActivityMainBinding binding;
+    ProgressBar loadingProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
+        loadingProgress = findViewById(R.id.loading_progress);
         Intent intent = getIntent();
         if (intent != null) {
             il = intent.getIntExtra("ilId", -1); // -1, değer bulunamazsa varsayılan değerdir.
@@ -37,6 +40,7 @@ public class CardActivity extends AppCompatActivity {
         }
         LoadCardsTask loadCardsTask = new LoadCardsTask();
         loadCardsTask.execute();
+
     }
 
     class LoadCardsTask extends AsyncTask<Void, Void, List<card>> {
@@ -48,8 +52,14 @@ public class CardActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            loadingProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected void onPostExecute(List<card> cards) {
             if (cards != null && !cards.isEmpty()) {
+                loadingProgress.setVisibility(View.GONE);
                 LinearLayout buttonContainer = findViewById(R.id.button_container);
 
                 for (final card card : cards) {

@@ -23,7 +23,8 @@ public class AlanRepository extends JdbcEntityRepositoryBase<alan> {
         _alan.giysi = resultSet.getInt("giysi");
         _alan.insangucu = resultSet.getInt("insangucu");
         _alan.yiyecek = resultSet.getInt("yiyecek");
-        _alan.konum = resultSet.getString("konum");
+        _alan.longtitude = resultSet.getDouble("longtitude");
+        _alan.latitude = resultSet.getDouble("latitude");
         return _alan;
     }
 
@@ -39,12 +40,12 @@ public class AlanRepository extends JdbcEntityRepositoryBase<alan> {
 
     @Override
     protected String getInsertQuery() {
-        return  "INSERT INTO alan (insangucu,yiyecek,giysi,konum) VALUES (?,?,?,?)";
+        return  "INSERT INTO alan (insangucu,yiyecek,giysi,longtitude,latitude) VALUES (?,?,?,?,?)";
     }
 
     @Override
     protected String getUpdateQuery() {
-        return "Update alan SET insangucu=?,yiyecek=?,giysi=?,konum=? where id=?";
+        return "Update alan SET insangucu=?,yiyecek=?,giysi=?,longtitude=?,latitude=? where id=?";
     }
 
     @Override
@@ -57,7 +58,8 @@ public class AlanRepository extends JdbcEntityRepositoryBase<alan> {
         statement.setInt(1,entity.insangucu);
         statement.setInt(2,entity.insangucu);
         statement.setInt(3,entity.insangucu);
-        statement.setString(4,entity.konum);
+        statement.setDouble(4,entity.longtitude);
+        statement.setDouble(5,entity.latitude);
     }
 
     @Override
@@ -65,8 +67,9 @@ public class AlanRepository extends JdbcEntityRepositoryBase<alan> {
         statement.setInt(1,entity.insangucu);
         statement.setInt(2,entity.insangucu);
         statement.setInt(3,entity.insangucu);
-        statement.setString(4,entity.konum);
-        statement.setInt(5,entity.id);
+        statement.setDouble(4,entity.longtitude);
+        statement.setDouble(5,entity.latitude);
+        statement.setInt(6,entity.id);
     }
 
     public List<alan> getAllAlan() {

@@ -68,9 +68,20 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
+        @Override
+        protected void onPreExecute() {
+            binding.loadingProgress.setVisibility(View.VISIBLE);
+            binding.spinnerIl.setEnabled(false);
+            binding.spinnerIlce.setEnabled(false);
+        }
+
         @Override
         protected void onPostExecute(List<iller> cityList) {
             if (cityList != null) {
+                binding.loadingProgress.setVisibility(View.GONE);
+                binding.spinnerIl.setEnabled(true);
+                binding.spinnerIlce.setEnabled(true);
                 ArrayAdapter<iller> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, cityList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 binding.spinnerIl.setAdapter(adapter);
@@ -107,8 +118,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            protected void onPreExecute() {
+                binding.loadingProgress.setVisibility(View.VISIBLE);
+                binding.spinnerIlce.setEnabled(false);
+            }
+
+            @Override
             protected void onPostExecute(List<ilceler> ilceList) {
                 if (ilceList != null) {
+                    binding.loadingProgress.setVisibility(View.GONE);
+                    binding.spinnerIlce.setEnabled(true);
                     ArrayAdapter<ilceler> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, ilceList);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.spinnerIlce.setAdapter(adapter);

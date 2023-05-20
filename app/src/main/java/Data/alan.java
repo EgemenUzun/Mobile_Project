@@ -5,7 +5,8 @@ public class alan {
     public int insangucu;
     public int yiyecek;
     public int giysi;
-    public String konum;
+    public double longtitude;
+    public  double latitude;
 
     @Override
     public String toString() {
@@ -14,7 +15,8 @@ public class alan {
                 ", insangucu=" + insangucu +
                 ", yiyecek=" + yiyecek +
                 ", giysi=" + giysi +
-                ", konum='" + konum + '\'' +
+                ", longtitude=" + longtitude +
+                ", latitude=" + latitude +
                 '}';
     }
 }
