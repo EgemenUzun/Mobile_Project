@@ -55,7 +55,10 @@ public class CardActivity extends AppCompatActivity {
         protected void onPreExecute() {
             loadingProgress.setVisibility(View.VISIBLE);
         }
-
+        private int dpToPx(int dp) {
+            float density = getResources().getDisplayMetrics().density;
+            return Math.round((float) dp * density);
+        }
         @Override
         protected void onPostExecute(List<card> cards) {
             if (cards != null && !cards.isEmpty()) {

@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--Veri tabanı için gerekli olan izinler-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--Google maps için gerekli olan izinler-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -15,7 +17,7 @@
         android:label="Afet Toplanma Noktaları"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobil_Project"
-        tools:targetApi="31">
+        tools:targetApi="29">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDthwkV3z1sxbkxoQdwGD09auQd9gxh6v8" />
