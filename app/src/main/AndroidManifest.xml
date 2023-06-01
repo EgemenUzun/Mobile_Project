@@ -12,13 +12,17 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Afet Toplanma Noktaları"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobil_Project"
         tools:targetApi="31">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDthwkV3z1sxbkxoQdwGD09auQd9gxh6v8" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".AlanActivity"
             android:exported="false" />

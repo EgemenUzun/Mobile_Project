@@ -65,7 +65,7 @@ public class CardActivity extends AppCompatActivity {
                 for (final card card : cards) {
                     Button button = new Button(CardActivity.this);
                     button.setText(card.title);
-                    button.setBackgroundColor(getResources().getColor(R.color.teal_200));
+                    button.setBackgroundColor(getResources().getColor(R.color.brandGreen));
                     button.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT

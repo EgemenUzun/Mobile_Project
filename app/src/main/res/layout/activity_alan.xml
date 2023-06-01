@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AlanActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/navbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/purple_500"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="407dp"
+        android:layout_height="53dp"
+        android:background="@color/brandBlue"
+        android:gravity="center"
         android:padding="16dp"
-        android:gravity="center">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/title_txt"
@@ -23,19 +24,20 @@
             android:text="Title"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:layout_width="57dp"
             android:layout_height="57dp"
             android:contentDescription="@string/go_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="GoBack"
             android:src="@drawable/back_icon_foreground"
-            android:onClick="GoBack"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
@@ -89,14 +91,15 @@
         app:layout_constraintTop_toBottomOf="@id/clothes"
         app:layout_constraintStart_toStartOf="@id/clothes"
         app:layout_constraintEnd_toEndOf="@id/clothes"/>
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_width="405dp"
+        android:layout_height="402dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manpower"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manpower" />
     <ProgressBar
         android:id="@+id/loading_progress"
         android:layout_width="wrap_content"

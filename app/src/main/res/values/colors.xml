@@ -10,4 +10,8 @@
     <color name="colorPrimary">#00FF00</color>
     <color name="colorMiddle">#FFFF00</color>
     <color name="colorAccent">#FF0000</color>
+    <color name="brandBlue">#75CDF5</color>
+    <color name="brandYellow">#FFB337</color>
+    <color name="brandGreen">#A8DCBD</color>
+
 </resources>
